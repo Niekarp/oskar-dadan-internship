@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
+import { ApiClientService } from 'src/app/services/api-client/api-client.service';
 
 @Component({
   selector: 'app-users-list',
@@ -7,13 +8,11 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-  public users: User[] = [
-    { id: 1, name: 'user1', username: 'usr1' },
-    { id: 2, name: 'user2', username: 'usr2' },
-    { id: 3, name: 'user3', username: 'usr3' },
-  ];
+  public users: User[];
 
-  constructor() { }
+  constructor(private api: ApiClientService) {
+    this.api.getUsers().subscribe(users => this.users = users);
+  }
 
   ngOnInit() {
   }
