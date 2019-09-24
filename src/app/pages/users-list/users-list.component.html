@@ -4,6 +4,6 @@
 
 <main>
   <div *ngFor="let user of users; index as idx">
-    {{ idx + 1 }} {{ user }} @{{ user }}
+    {{ user.id }} {{ user.name }} @{{ user.username }}
   </div>
 </main>
