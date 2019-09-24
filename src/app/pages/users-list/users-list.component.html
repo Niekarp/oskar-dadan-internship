@@ -1,9 +1,9 @@
 <header>Users list</header>
 
-<input type="text" placeholder="Search by user name...">
+<input type="text" placeholder="Search by user name..." (keyup)="onSearchInputKeydown($event)">
 
 <main>
-  <div *ngFor="let user of users; index as idx">
+  <div *ngFor="let user of searchedUsers; index as idx">
     {{ user.id }} {{ user.name }} @{{ user.username }}
   </div>
 </main>
