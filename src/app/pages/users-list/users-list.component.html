@@ -3,7 +3,7 @@
 <input id="searchInput" type="text" placeholder="Search by user name..." (keyup)="onSearchInputKeydown($event)">
 
 <ol id="user-list">
-  <li *ngFor="let user of searchedUsers; index as idx">
+  <li *ngFor="let user of searchedUsers">
     {{ user.name }} <span class="username">@{{ user.username }}</span>
   </li>
 </ol>
