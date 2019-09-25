@@ -9,7 +9,7 @@ import { ApiClientService } from 'src/app/services/api-client/api-client.service
 })
 export class UsersListComponent implements OnInit {
   public searchedUsers: User[];
-  private users: User[];
+  private users: User[] = [];
 
   constructor(private api: ApiClientService) {
     this.api.getUsers().subscribe(users => {
