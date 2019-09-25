@@ -3,17 +3,27 @@ import { Observable, throwError } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, retryWhen, delay, tap, timeout, take } from 'rxjs/operators';
+import { ConfigService } from '../config/config.service';
+import { UrlConfig } from 'src/app/models/url-config.mode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiClientService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com';
+  private urlConfig: UrlConfig;
 
-  constructor(private http: HttpClient) { }
+  constructor(private config: ConfigService, private http: HttpClient) {
+    this.urlConfig = config.urlConfig;
+  }
+
+  // Method intended to be called by urlConfigProvider
+  public getUrlConfig(url: string): Observable<UrlConfig> {
+    const request = this.http.get<UrlConfig>(url);
+    return this.pipeStandardRequestStrategy(request, false);
+  }
 
   public getUsers(): Observable<User[]> {
-    const url = `${this.apiUrl}/users`;
+    const url = `${this.urlConfig.apiUrl}/users`;
     const request = this.http.get<User[]>(url);
     return this.pipeStandardRequestStrategy(request);
   }
