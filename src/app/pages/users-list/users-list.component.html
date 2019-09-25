@@ -3,6 +3,7 @@
 <input id="searchInput" type="text" placeholder="Search by user name..." (keyup)="onSearchInputKeydown($event)">
 
 <ol id="user-list">
+  <span *ngIf="!searchedUsers.length">nobody found</span>
   <li *ngFor="let user of searchedUsers">
     {{ user.name }} <span class="username">@{{ user.username }}</span>
   </li>

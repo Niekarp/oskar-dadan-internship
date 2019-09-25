@@ -8,7 +8,7 @@ import { ApiClientService } from 'src/app/services/api-client/api-client.service
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-  public searchedUsers: User[];
+  public searchedUsers: User[] = [];
   private users: User[] = [];
 
   constructor(private api: ApiClientService) {
